@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chá Revelação - Ana Beatriz ou Paulo Henrique</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('convite.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      background-color: rgba(255, 255, 255, 0.9);
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
+      margin-top: 40px;
+    }
+    form {
+      margin-bottom: 30px;
+    }
+    input, select, button {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+      width: 80%;
+      max-width: 300px;
+    }
+    .results {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+    .info {
+      margin-top: 40px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Chá Revelação</h1>
+    <h2>Ana Beatriz ou Paulo Henrique?</h2>
+
+    <form id="formulario">
+      <input type="text" id="nome" placeholder="Seu nome" required><br>
+
+      <label>Vai comparecer?</label><br>
+      <input type="radio" name="presenca" value="Sim" required> Sim
+      <input type="radio" name="presenca" value="Não"> Não<br>
+
+      <label>Quantas pessoas com você?</label><br>
+      <select id="quantidade">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3+">3 ou mais</option>
+      </select><br>
+
+      <label>Seu palpite:</label><br>
+      <input type="radio" name="palpite" value="Menino" required> 💙 Menino
+      <input type="radio" name="palpite" value="Menina"> 💗 Menina<br>
+
+      <button type="submit">Enviar</button>
+    </form>
+
+    <div class="results">
+      <strong>Resultado parcial:</strong><br>
+      <span id="menino">💙 Menino: 0 votos</span><br>
+      <span id="menina">💗 Menina: 0 votos</span>
+    </div>
+
+    <div class="info">
+      <p>🎁 Sugestão de presente: fraldas e/ou produtos de higiene</p>
+      <p>📍 Rua Congonhas 125, Parque da Matriz</p>
+      <p>📆 06 de julho (domingo), às 11h</p>
+    </div>
+  </div>
+
+  <script>
+    let votos = { Menino: 0, Menina: 0 };
+
+    document.getElementById('formulario').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const nome = document.getElementById('nome').value;
+      const palpite = document.querySelector('input[name="palpite"]:checked').value;
+      votos[palpite]++;
+
+      document.getElementById('menino').textContent = `💙 Menino: ${votos['Menino']} votos`;
+      document.getElementById('menina').textContent = `💗 Menina: ${votos['Menina']} votos`;
+
+      alert(`Obrigado por confirmar, ${nome}!`);
+      document.getElementById('formulario').reset();
+    });
+  </script>
+</body>
+</html>
